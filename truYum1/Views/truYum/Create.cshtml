@@ -1,0 +1,151 @@
+﻿@model truYum1.Models.menu
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+    <style>
+        header {
+            height: 80px;
+            margin: 0;
+            background-color: black;
+        }
+
+        .col-lg-1 {
+            float: left;
+            padding: 15px;
+            font-size: 20px;
+            color: darkviolet;
+            width: 15%;
+        }
+
+        .col-lg-2 {
+            float: left;
+            padding: 15px;
+            font-size: 20px;
+            width: 15%;
+        }
+
+        .col-lg-3 {
+            float: left;
+            padding: 15px;
+            font-size: 20px;
+            width: 15%;
+        }
+
+        .col-lg-4 {
+            float: left;
+            padding: 15px;
+            font-size: 20px;
+            width: 15%;
+        }
+
+        td, th {
+            padding-top: 10px;
+            padding-left: 100px;
+        }
+
+        .user {
+            align-content: center;
+        }
+
+        .res {
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <div class="col-lg-1">truYum</div>
+        <div class="col-lg-2"> @Html.ActionLink("MenuItemsAdmins", "MenuItemsAdmins")</div>
+        <div class="col-lg-3"> @Html.ActionLink("MenuItems", "MenuItems")</div>
+        <div class="col-lg-4"> @Html.ActionLink("Cart", "Cart")</div>
+    </header>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>menu</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.category, "Select Category", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(mbox => mbox.category, new List<SelectListItem>
+{
+new SelectListItem{Text="Main Course",Value="Main Course",Selected=true},
+new SelectListItem{Text="Starter",Value="Starter"},
+new SelectListItem{Text="Snack",Value="SnaCK"}
+}, "Select language", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.category, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.active, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.active)
+                @Html.ValidationMessageFor(model => model.active, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.free, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.free)
+                @Html.ValidationMessageFor(model => model.free, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "MenuItemsAdmins")
+    </div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<truYum1.Models.menu>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MenuItems</title>
+    <style>
+        header {
+            height: 80px;
+            margin: 0;
+            background-color: black;
+        }
+
+        .col-lg-1 {
+            float: left;
+            padding: 15px;
+            font-size: 20px;
+            color: darkviolet;
+            width: 15%;
+        }
+
+        .col-lg-2 {
+            float: left;
+            padding: 15px;
+            font-size: 20px;
+            width: 15%;
+        }
+
+        .col-lg-3 {
+            float: left;
+            padding: 15px;
+            font-size: 20px;
+            width: 15%;
+        }
+
+        .col-lg-4 {
+            float: left;
+            padding: 15px;
+            font-size: 20px;
+            width: 15%;
+        }
+
+        td, th {
+            padding-top: 10px;
+            padding-left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="col-lg-1">truYum</div>
+        <div class="col-lg-2"> @Html.ActionLink("MenuItemsAdmins", "MenuItemsAdmins")</div>
+        <div class="col-lg-3"> @Html.ActionLink("MenuItems", "MenuItems")</div>
+        <div class="col-lg-4"> @Html.ActionLink("Cart", "Cart")</div>
+    </header>
+    <div>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Free Delivery</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                @foreach (var i in Model)
+                {
+                <tr>
+                    <td>@i.name</td>
+                    <td><input type="checkbox" checked="@i.free" /></td>
+                    <td>@i.price</td>
+                    <td>@i.category</td>
+                    <td>
+                        @Html.ActionLink("AddToCart", "AddToCart", new { name = i.name }) |
+                    </td>
+                </tr>
+            }
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
+
